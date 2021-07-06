@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        html{
+            height: 100%;
+        }
+        body {
+            background-image: linear-gradient(red, rgb(44, 21, 21));
+            color: white;
+        }
+    </style>
+    <title>Dad Joke API</title>
+</head>
+
+<body>
+
+    <div class="container ">
+        <h1 class="text-center m-5">😀😁Dad jokes using API😁😀 </h1>
+    </div>
+    
+    <div class="container">
+        <div class="position-absolute top-50 start-50 translate-middle text-center">
+            <div class="card" style="width: auto; ">
+                <div class="card-body text-secondary">
+                    <h5 class="card-title m-2">Dad Jokes</h5>
+                    <p id="joke"></p>
+                    <a id="jokeBtn" class="btn btn-secondary m-2">Next Joke</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- 
+    <script>
+        // setHeader = {
+        //     headers : {
+        //         Accept : 'application/json'
+        //     }
+        // };
+
+        fetch("https://icanhazdadjoke.com/", setHeader).then((res) => {
+            return res.json();
+        }).then((resData) => {
+            console.log(resData.joke);
+        }).catch((error) => {
+            console.log(error);
+        });
+    </script> -->
+
+    <script>
+        let btn = document.getElementById('jokeBtn');
+        let joke = document.getElementById('joke');
+        function fetchJoke() {
+            setHeader = {
+                headers: {
+                    Accept: "application/json"
+                }
+            };
+            fetch('https://icanhazdadjoke.com/', setHeader).then(res => res.json()).then(data => joke.innerHTML = data.joke).catch(error => joke.innerHTML = error);
+        }
+        fetchJoke();
+        btn.addEventListener("click", fetchJoke);
+
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
